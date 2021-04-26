@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
-
 User = get_user_model()
 
 
@@ -38,6 +37,43 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Notebook(Product):
+    diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
+    display = models.CharField(max_length=255, verbose_name='Дисплей')
+    Processor_freq = models.CharField(max_length=255, verbose_name='Частота процессора')
+    ram = models.CharField(max_length=255, verbose_name='ОЗУ')
+    video = models.CharField(max_length=255, verbose_name='видеокарта')
+    time_without_charge = models.CharField(max_length=255, verbose_name='время без зарядки')
+
+    def __str__(self):
+        return "{} : {}".format(self.category.name, self.title)
+
+
+class Smartphone(Product):
+    diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
+    display = models.CharField(max_length=255, verbose_name='Дисплей')
+    resolution = models.CharField(max_length=255, verbose_name='Разрешение экрана')
+    accum_volume = models.CharField(max_length=255, verbose_name='бъем батареии')
+    ram = models.CharField(max_length=255, verbose_name='ОЗУ')
+    sd = models.BooleanField(default='True')
+    sd_volume_max = models.CharField(max_length=255, verbose_name='Макс объем встр памяти')
+    main_cam_np = models.CharField(max_length=255, verbose_name='Главная камера')
+    frontal_cam_np = models.CharField(max_length=255, verbose_name='Фронтальная камера')
+
+    def __str__(self):
+        return "{} : {}".format(self.category.name, self.title)
+
+
+# Ноутбуки
+#
+# Diagonal
+# Display
+# Processor_freq
+# Ram
+# Video
+# time_without_charge
 
 
 class CartProduct(models.Model):
