@@ -66,16 +66,6 @@ class Smartphone(Product):
         return "{} : {}".format(self.category.name, self.title)
 
 
-# Ноутбуки
-#
-# Diagonal
-# Display
-# Processor_freq
-# Ram
-# Video
-# time_without_charge
-
-
 class CartProduct(models.Model):
     user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE)
     cart = models.ForeignKey('Cart', verbose_name='Корзина', on_delete=models.CASCADE, related_name='related_products')
