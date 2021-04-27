@@ -1,12 +1,27 @@
-from django.forms import ModelChoiceField
+from django.forms import ModelChoiceField, ModelForm, ValidationError
 from django.contrib import admin
-
 from .models import *
 
+from PIL import Image
 
+class NotebookAdminForm(ModelForm):
+    MIN_RESOLUTION = (400, 400)
+    def __init__(self, * args, **kwargs):
+        super().__init__(* args, **kwargs)
+        self.fields['image'].help_text = 'Загружайте изображения с минимальным разрешением {}х{}'.format(*self.MIN_RESOLUTION)
+
+    def clean_image(self):
+        image = self.cleaned_data['image']
+        img = Image.open(image)
+        min_height, min_width = self.MIN_RESOLUTION
+        if img.height < min_height or min_width<min_width:
+            raise ValidationError('Разрешение изображение меньше минимального!')
+        return image
 # Жесткое ограничение привязки к категории . Для выбора только одной каткгории в админке (урок5)
 
 class NotebookAdmin(admin.ModelAdmin):
+
+    form = NotebookAdminForm
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'category':
