@@ -6,7 +6,7 @@ from .models import Notebook, Smartphone, Engines
 def test_view(request):
     return render(request, 'base.html',{})
 
-
+# представление для вывода информации из нескольких моделей
 class ProductDetailView(DetailView):
     CT_MODEL_MODEL_CLASS = {
         'notebook': Notebook,

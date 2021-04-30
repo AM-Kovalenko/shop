@@ -6,14 +6,19 @@ from django.urls import reverse
 
 User = get_user_model()
 
-def get_product_url(obj,vievname):
+
+def get_product_url(obj, vievname):
     ct_model = obj.__class__.meta.model_name
-    return reverse(vievname, kwargs={'ct_model':ct_model, 'slug':obj.slug})
+    return reverse(vievname, kwargs={'ct_model': ct_model, 'slug': obj.slug})
+
 
 class MinResolutionErrorException(Exception):
     pass
+
+
 class MaxResolutionErrorException(Exception):
     pass
+
 
 class LatestProductsManager:
 
@@ -50,11 +55,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-
-    MIN_RESOLUTION = (400, 400)
-    MAX_RESOLUTION = (800, 800)
-    MAX_IMAGE_SIZE = 3145728
-
     class Meta:
         abstract = True
 
@@ -68,6 +68,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+
 class Notebook(Product):
     diagonal = models.CharField(max_length=255, verbose_name='Диагональ')
     display = models.CharField(max_length=255, verbose_name='Дисплей')
@@ -80,7 +81,7 @@ class Notebook(Product):
         return "{} : {}".format(self.category.name, self.title)
 
     def get_absolute_url(self):
-        return get_product_url(self,'product_detail')
+        return get_product_url(self, 'product_detail')
 
 
 class Smartphone(Product):
@@ -98,7 +99,8 @@ class Smartphone(Product):
         return "{} : {}".format(self.category.name, self.title)
 
     def get_absolute_url(self):
-        return get_product_url(self,'product_detail')
+        return get_product_url(self, 'product_detail')
+
 
 class CartProduct(models.Model):
     user = models.ForeignKey('Customer', verbose_name='Покупатель', on_delete=models.CASCADE)
@@ -155,5 +157,4 @@ class Engines(Product):
         return "{} : {}".format(self.category.name, self.title)
 
     def get_absolute_url(self):
-        return get_product_url(self,'product_detail')
-
+        return get_product_url(self, 'product_detail')
