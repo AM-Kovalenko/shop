@@ -21,11 +21,6 @@
     </div>
     <p class="mt-4">Характеристики: </p>
     {{ product|product_spec }}
-    {% if product.category.slug == 'notebooks' %}
-        {% include 'notebook_specification.html'%}
-    {% else %}
-        {% include 'smartphone_specification.html'%}
-    {% endif %}
 
 </div>
 
