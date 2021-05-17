@@ -42,7 +42,9 @@ class SmartphoneAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Notebook, NotebookAdmin)
 admin.site.register(Smartphone, SmartphoneAdmin)
+admin.site.register(Engines)
+
 admin.site.register(CartProduct)
 admin.site.register(Cart)
 admin.site.register(Customer)
-admin.site.register(Engines)
+admin.site.register(Order)
