@@ -37,7 +37,7 @@ PRODUCT_SPEC = {
         'Наличие слота карты памяти': 'sd',
         'Макс объем встр памяти': 'sd_volume_max',
         'Главная камера': 'main_cam_np',
-        'Фронтальная камера': 'frontal_cam_np',
+        'Фронтальная камера': 'frontal_cam_np'
     },
     'engines': {
         'Тип топлива': 'fuel_type',
@@ -47,6 +47,9 @@ PRODUCT_SPEC = {
         'Объем': 'volume',
         'Масса': 'weight'
     },
+    'gearparts': {
+        'Масса': 'weight'
+    }
 }
 
 

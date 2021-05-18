@@ -8,7 +8,7 @@ from .views import (
     DeleteFromCartView,
     ChangeQTYView,
     CheckoutView,
-    MakeOrderView
+    MakeOrderView,
 )
 
 urlpatterns = [
